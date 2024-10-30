@@ -2,7 +2,7 @@ import csv
 from dataclasses import dataclass
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 URL = "https://quotes.toscrape.com"
 
@@ -14,7 +14,7 @@ class Quote:
     tags: list[str]
 
 
-def get_single_quote(quote) -> Quote:
+def get_single_quote(quote: Tag) -> Quote:
     return Quote(
         text=quote.find("span", itemprop="text").text,
         author=quote.find("small").text,
